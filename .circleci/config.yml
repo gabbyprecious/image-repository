@@ -28,7 +28,7 @@ commands:
         command: |
           . venv/bin/activate
           python3 manage.py test
-        working_directory: backend
+        working_directory: django_backend
 
   
 ################################################################################
