@@ -3,4 +3,4 @@
 
 ## Setting up 
 
-Backen
+Backend is hosted here https://djangoimage-repo.herokuapp.com/

@@ -150,11 +150,10 @@ COOKIE_TIME = 604800
 #     api_key=env("CLOUDINARY_API_KEY"),
 #     api_secret=env("CLOUDINARY_API_SECRET"),
 # )
-
 cloudinary.config(
-    cloud_name="gabbyprecious",
-    api_key="639429561267899",
-    api_secret="BPC9JBL_6N7DJ5ZwEZBMz7GiC6Y",
+    cloud_name=env("CLOUD_NAME"),
+    api_key=env("CLOUDINARY_API_KEY"),
+    api_secret=env("CLOUDINARY_API_SECRET"),
 )
 
 # Activate Django-Heroku.

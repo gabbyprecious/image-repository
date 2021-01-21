@@ -1,18 +1,20 @@
-from django.contrib.auth import get_user_model
+import stripe
+import environ
 from cloudinary import uploader
+
+from django.contrib.auth import get_user_model
 
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet, ModelViewSet
 
-import stripe
-
 from image_repository.models import Image, Sales
-
 from image_repository.serializers import ImageSerializer
 
-stripe.api_key = "sk_test_51I9qxDKQkbGuXKbbzxIbZTdkhjIGFZW9PDcm5fifXplhGQszasHDGY5WtiprjLX2BUZZ0UZIIlAkoRzthn3ISCSU00afdQC1xq"
+env = environ.Env()
+
+stripe.api_key = env("STRIPE_API_KEY")
 
 class ImageViewset(ModelViewSet):
     model = Image
