@@ -36,7 +36,7 @@ class UserSignUpTest(TestCase):
 
         self.assertIn("user", response.json().keys())
         self.assertEqual(self.first_name, user.first_name)
-        self.assertEqual(self.email, user.username)
+        self.assertEqual(self.username, user.username)
         self.assertTrue("Authorization", response._headers)
         self.assertTrue(auth_token.startswith("Bearer "))
 
@@ -69,6 +69,6 @@ class UserLoginTest(TestCase):
         self.assertEqual(200, response.status_code)
 
         self.assertIn("message", response.json().keys())
-        self.assertEqual(self.user.email,response.json()['email'] )
+        self.assertEqual(self.user.username,response.json()['username'] )
         self.assertTrue("Authorization", response._headers)
         self.assertTrue(auth_token.startswith("Bearer "))

@@ -74,7 +74,7 @@ class LoginView(GenericViewSet):
         content = {
             "success": True,
             "message": "You've successfully logged in",
-            "email": user.email,
+            "username": user.username,
         }
         serializer_content = LoginMessageSerializer(content)
         response = Response(serializer_content.data, status=status.HTTP_200_OK)

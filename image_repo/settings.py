@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 import cloudinary
 from pathlib import Path
 import environ
+from django.contrib.auth import get_user_model
 import django_heroku
 
 import environ
@@ -25,7 +26,6 @@ env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
 )
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -67,6 +67,9 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+# Authentication Backends
+AUTHENTICATION_BACKENDS = ["django.contrib.auth.backends.ModelBackend"]
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

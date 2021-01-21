@@ -16,19 +16,12 @@ from image_repo.settings import env
 
 stripe.api_key = env("STRIPE_API_KEY")
 
-class ImageViewset(ModelViewSet):
-    model = Image
-    serializer_class = ImageSerializer
+class ImageViewset(GenericViewSet):
     permission_classes = [IsAuthenticated]
-
-    def get_queryset(self):
-        return Image.objects.filter(user=self.request.user)
     
-    def create(self, request, *args, **kwargs):
+    def upload_image(self, request, *args, **kwargs):
         user = request.user
-        serializer = self.get_serializer(data=request.data)
-        serializer.initial_data["uploaded_by"] = user.id
-        serializer.initial_data["owner"] = user.id
+        serializer = ImageSerializer(data=request.data, context={"request": request})
         serializer.is_valid(raise_exception=True)
         image = uploader.upload(request.data["image"], folder="Stock Image")
         serializer.save(owner=user, uploaded_by=user, image=image["secure_url"])

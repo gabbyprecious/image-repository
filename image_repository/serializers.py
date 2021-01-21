@@ -34,7 +34,7 @@ class SignUpSerializer(serializers.Serializer):
         :return:
         """
         email = validated_data.get("email")
-        username = validated_data.get("email")
+        username = validated_data.get("username")
         password = validated_data.get("password")
         first_name = validated_data.get("first_name")
         last_name = validated_data.get("last_name")
@@ -42,7 +42,6 @@ class SignUpSerializer(serializers.Serializer):
         user = User.objects.create_user(username=username, email=email, password=password)
         user.first_name = first_name
         user.last_name = last_name
-        user.is_personal = True
         user.is_active = True
         user.save()
         return user
@@ -52,7 +51,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = (
             "id",
-            "email",
+            "username",
             "first_name",
             "last_name",
         )
@@ -64,7 +63,7 @@ class UserLoginSerializer(serializers.Serializer):
 
 class LoginMessageSerializer(serializers.Serializer):
     message = serializers.CharField()
-    email = serializers.EmailField()
+    username = serializers.CharField()
     success = serializers.BooleanField()
 
 class ImageSerializer(serializers.ModelSerializer):
