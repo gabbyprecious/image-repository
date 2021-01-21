@@ -4,3 +4,5 @@
 ## Setting up 
 
 Backend is hosted here https://djangoimage-repo.herokuapp.com/
+
+Documentation can be found here; https://documenter.getpostman.com/view/10820292/TVza9tTv
