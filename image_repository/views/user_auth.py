@@ -40,7 +40,7 @@ class SignUpView(GenericViewSet):
         response.set_cookie(
             "Authorization",
             value=f"Bearer {token}",
-            httponly=False,
+            httponly=True,
             max_age=settings.COOKIE_TIME,
             expires=settings.COOKIE_TIME,
             samesite="None",
