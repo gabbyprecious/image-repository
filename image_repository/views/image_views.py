@@ -12,7 +12,7 @@ from rest_framework.viewsets import GenericViewSet, ModelViewSet
 from image_repository.models import Image, Sales
 from image_repository.serializers import ImageSerializer
 
-env = environ.Env()
+from image_repo.settings import env
 
 stripe.api_key = env("STRIPE_API_KEY")
 

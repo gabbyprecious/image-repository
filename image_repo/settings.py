@@ -14,16 +14,27 @@ from pathlib import Path
 import environ
 import django_heroku
 
+import environ
+
+ROOT_DIR = (
+    environ.Path(__file__) - 2
+    #image-repo/image_repo/settings.py
+)
+
+env = environ.Env(
+    # set casting, default value
+    DEBUG=(bool, False)
+)
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env()
+READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
+if READ_DOT_ENV_FILE:
+    # OS environment variables take precedence over variables from .env
+    env.read_env(str(ROOT_DIR.path(".env")))
 
-# READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
-# if READ_DOT_ENV_FILE:
-#     # OS environment variables take precedence over variables from .env
-#     env.read_env(str(BASE_DIR.path(".env")))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -33,8 +44,6 @@ SECRET_KEY = 'e%afz0+=h85y%h8wh5n57mj4=egv6959yugd)w-+8^&uavzsgd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -99,7 +108,7 @@ DATABASES = {
     }
 }
 
-# DATABASES = {"default": env.db("DATABASE_URL", default= BASE_DIR / 'db.sqlite3')}
+DATABASES = {"default": env.db("DATABASE_URL", default= "sqlite:////" + str(BASE_DIR) + '/db.sqlite3')}
 
 
 # Password validation
