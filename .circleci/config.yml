@@ -21,14 +21,14 @@ commands:
         command: |
           python3 -m venv venv
           . venv/bin/activate
-          pip install -r django_backend/requirements.txt
+          pip install -r requirements.txt
   django_unittests:
     steps:
     - run:
         command: |
-          . ../venv/bin/activate
+          . venv/bin/activate
           python3 manage.py test
-        working_directory: django_backend
+        working_directory: ~/project
 
   
 ################################################################################
