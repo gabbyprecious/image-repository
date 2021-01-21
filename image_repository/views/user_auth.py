@@ -28,7 +28,7 @@ class SignUpView(GenericViewSet):
         serializer = SignUpSerializer(data=request.data)
 
         if not serializer.is_valid():
-            return Response({"error": serializer.errors, "success": False}, status=status.HTTP_403_FORBIDDEN)
+            return Response({"error": serializer.errors, "success": False}, status=status.HTTP_400_BAD_REQUEST)
         user = serializer.save()
 
         user_serializer = UserSerializer(user)
