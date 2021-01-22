@@ -27,7 +27,7 @@ commands:
     - run:
         command: |
           . venv/bin/activate
-          python3 manage.py test --settings='image_repo.test_settings'
+          python3 manage.py test
         working_directory: ~/project
 
   
